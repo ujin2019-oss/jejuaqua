@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>아쿠아플라넷 제주</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="./script/action.js" defer></script>
+</head>
+<body>
+  <div id="wrap">
+    <header class="site-header">
+      <div class="header-inner">
+        <button type="button" class="menu-btn" aria-label="전체 메뉴 열기">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <h1 class="logo">
+          <a href="#hero" aria-label="아쿠아플라넷 제주 홈">
+            <img src="./images/foot_logo.png" alt="Hanwha aqua planet">
+          </a>
+        </h1>
+        <nav class="gnb" aria-label="주요 메뉴">
+          <ul>
+            <li><a href="#info">이용안내</a></li>
+            <li><a href="#program">프로그램</a></li>
+            <li><a href="#marine">해양생물소개</a></li>
+            <li><a href="#market">아쿠아플라넷</a></li>
+            <li><a href="#voice">고객의소리</a></li>
+            <li><a href="#ticket">티켓구매</a></li>
+          </ul>
+        </nav>
+        <a class="login-link" href="#">LOGIN</a>
+      </div>
+      <div class="mobile-menu">
+        <a href="#info">이용안내</a>
+        <a href="#program">프로그램</a>
+        <a href="#marine">해양생물소개</a>
+        <a href="#market">아쿠아플라넷</a>
+        <a href="#voice">고객의소리</a>
+        <a href="#ticket">티켓구매</a>
+      </div>
+    </header>
+
+    <aside class="quick-menu" aria-label="빠른 메뉴">
+      <button type="button" class="quick-item active" data-target="#ticket">
+        <img src="./images/hero_icon1.png" alt="">
+        <span>티켓<br>구매</span>
+      </button>
+      <button type="button" class="quick-item" data-target="#program">
+        <img src="./images/hero_icon2.png" alt="">
+        <span>프로<br>그램</span>
+      </button>
+      <button type="button" class="quick-item" data-target="#info">
+        <img src="./images/hero_icon3.png" alt="">
+        <span>이용<br>안내</span>
+      </button>
+      <div class="quick-line" aria-hidden="true"></div>
+    </aside>
+
+    <main>
+      <section class="hero" id="hero">
+        <video class="hero-video" autoplay muted loop playsinline poster="./images/bg_01.png">
+          <source src="./images/media_1920_1080.mp4" type="video/mp4">
+        </video>
+        <div class="hero-dim"></div>
+        <div class="hero-content">
+          <p>아시아 최대 규모 아쿠아리움</p>
+          <strong>아쿠아플라넷 제주</strong>
+        </div>
+      </section>
+
+      <section class="marine section-panel" id="marine">
+        <div class="section-title">
+          <span>MARINE LIFE</span>
+          <h2>바다친구들 소개</h2>
+          <p>아쿠아플라넷 제주에서 볼 수 있는 제주 해양생물들을 소개합니다.</p>
+        </div>
+
+        <div class="inner">
+          <ul class="animal-list">
+            <li class="animal-card">
+              <figure><img src="./images/buddy_img1.png" alt="펭귄"></figure>
+              <div class="card-body">
+                <img class="badge" src="./images/buddy_icon1.png" alt="">
+                <h3>펭귄</h3>
+                <em>Penguin</em>
+                <p>남극의 추위를 이겨내는<br>귀여운 수영의 달인</p>
+              </div>
+            </li>
+            <li class="animal-card">
+              <figure><img src="./images/buddy_img2.png" alt="젠투펭귄"></figure>
+              <div class="card-body">
+                <img class="badge" src="./images/buddy_icon2.png" alt="">
+                <h3>젠투펭귄</h3>
+                <em>Gentoo Penguin</em>
+                <p>빠른 유영 속도를 자랑하는<br>활발한 펭귄</p>
+              </div>
+            </li>
+            <li class="animal-card">
+              <figure><img src="./images/buddy_img3.png" alt="참물범"></figure>
+              <div class="card-body">
+                <img class="badge" src="./images/buddy_icon3.png" alt="">
+                <h3>참물범</h3>
+                <em>Seal</em>
+                <p>수중과 육지를 넘나드는<br>사랑스러운 바다 친구</p>
+              </div>
+            </li>
+            <li class="animal-card">
+              <figure><img src="./images/buddy_img4.png" alt="가오리"></figure>
+              <div class="card-body">
+                <img class="badge" src="./images/buddy_icon4.png" alt="">
+                <h3>가오리</h3>
+                <em>Manta Ray</em>
+                <p>우아하게 바다를 나는<br>신비로운 바다의 정령</p>
+              </div>
+            </li>
+            <li class="animal-card">
+              <figure><img src="./images/buddy_img5.png" alt="수달"></figure>
+              <div class="card-body">
+                <img class="badge" src="./images/buddy_icon5.png" alt="">
+                <h3>수달</h3>
+                <em>Otter</em>
+                <p>장난기 가득한 모습으로<br>사랑받는 수중 탐험가</p>
+              </div>
+            </li>
+          </ul>
+          <a class="line-btn" href="#marine">
+            <img src="./images/buddy_btn_icon1.png" alt="">
+            모든 생물 보러가기
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="program section-panel" id="program">
+        <div class="section-title">
+          <span>SPECIAL PROGRAM</span>
+          <h2>특별 프로그램</h2>
+          <p>아쿠아리움에서만 경험할 수 있는 특별한 전시와 체험 프로그램을 만나보세요.</p>
+        </div>
+
+        <div class="inner">
+          <ul class="program-list">
+            <li class="program-card">
+              <figure><img src="./images/special_img1.png" alt="아쿠아 마린 쇼"></figure>
+              <div class="program-body">
+                <h3>해녀 할망의 바당이야기</h3>
+                <p>해녀들의 물질 기술과 도구 체험을 통해 제주 바다 문화를 배워볼 수 있어요.</p>
+                <dl>
+                  <div><dt><img src="./images/special_icon1.png" alt="">시간</dt><dd>11:40 / 14:30 / 15:30</dd></div>
+                  <div><dt><img src="./images/special_icon2.png" alt="">장소</dt><dd>1F 아쿠아리움 &gt; 터치풀</dd></div>
+                </dl>
+                <a href="#">자세히 보기 <span aria-hidden="true">→</span></a>
+              </div>
+            </li>
+            <li class="program-card">
+              <figure><img src="./images/special_img2.png" alt="다이버 체험"></figure>
+              <div class="program-body">
+                <h3>해녀 할망의 바당이야기</h3>
+                <p>해녀들의 물질 기술과 도구 체험을 통해 제주 바다 문화를 배워볼 수 있어요.</p>
+                <dl>
+                  <div><dt><img src="./images/special_icon1.png" alt="">시간</dt><dd>11:40 / 14:30 / 15:30</dd></div>
+                  <div><dt><img src="./images/special_icon2.png" alt="">장소</dt><dd>1F 아쿠아리움 &gt; 터치풀</dd></div>
+                </dl>
+                <a href="#">자세히 보기 <span aria-hidden="true">→</span></a>
+              </div>
+            </li>
+            <li class="program-card">
+              <figure><img src="./images/special_img3.png" alt="해녀 체험 프로그램"></figure>
+              <div class="program-body">
+                <h3>해녀 할망의 바당이야기</h3>
+                <p>해녀들의 물질 기술과 도구 체험을 통해 제주 바다 문화를 배워볼 수 있어요.</p>
+                <dl>
+                  <div><dt><img src="./images/special_icon1.png" alt="">시간</dt><dd>11:40 / 14:30 / 15:30</dd></div>
+                  <div><dt><img src="./images/special_icon2.png" alt="">장소</dt><dd>1F 아쿠아리움 &gt; 터치풀</dd></div>
+                </dl>
+                <a href="#">자세히 보기 <span aria-hidden="true">→</span></a>
+              </div>
+            </li>
+          </ul>
+          <a class="line-btn" href="#program">
+            <img src="./images/special_icon1.png" alt="">
+            전체 프로그램 보기
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="information" id="info">
+        <div class="info-visual">
+          <div class="section-title light">
+            <h2>이용 안내</h2>
+            <p>아쿠아리움 이용 시간과 요금 정보를 확인하세요.</p>
+          </div>
+        </div>
+
+        <div class="inner info-inner">
+          <div class="info-box">
+            <article class="hours">
+              <h3><img src="./images/infor_icon1.png" alt="">운영시간</h3>
+              <dl>
+                <div>
+                  <dt><img src="./images/infor_icon2.png" alt="">연중무휴</dt>
+                  <dd>09:30 - 18:00</dd>
+                </div>
+                <div>
+                  <dt><img src="./images/infor_icon3.png" alt="">매표 마감</dt>
+                  <dd>17:00</dd>
+                </div>
+              </dl>
+              <p class="notice"><img src="./images/infor_icon4.png" alt="">매표 마감시간은 17:00이며,<br>입장 마감시간은 17:30이오니 이용에 참고 부탁드립니다.</p>
+            </article>
+
+            <article class="price" id="ticket">
+              <h3><img src="./images/infor_icon5.png" alt="">이용요금</h3>
+              <ul>
+                <li><span>성인 <small>만 19세 이상</small></span><strong>44,600 원</strong></li>
+                <li><span>청소년/경로 <small>만 13세~18세 / 만 65세 이상</small></span><strong>42,700 원</strong></li>
+                <li><span>어린이 <small>만 3세~12세</small></span><strong>40,500 원</strong></li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="notice-banner" id="market">
+            <img src="./images/infor_cha1.png" alt="아쿠아리움 캐릭터">
+            <div>
+              <h3>층별 안내</h3>
+              <p>아쿠아리움 각 층의 전시와 편의시설 정보를 확인하세요.</p>
+            </div>
+            <a href="#">층별 안내 바로가기 <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="voice">
+      <div class="inner">
+        <div class="footer-links">
+          <dl>
+            <dt>이용안내</dt>
+            <dd><a href="#">이용시간 · 요금안내</a></dd>
+            <dd><a href="#">가이드맵</a></dd>
+            <dd><a href="#">주변 관광지</a></dd>
+            <dd><a href="#">온라인 기프트샵</a></dd>
+            <dd><a href="#">관람가이드</a></dd>
+          </dl>
+          <dl>
+            <dt>프로그램</dt>
+            <dd><a href="#">프로그램 일정</a></dd>
+            <dd><a href="#">프로그램 소개</a></dd>
+            <dd><a href="#">특별공연</a></dd>
+            <dd><a href="#">특별체험</a></dd>
+          </dl>
+          <dl>
+            <dt>혜택안내</dt>
+            <dd><a href="#">이벤트</a></dd>
+            <dd><a href="#">제휴/할인안내</a></dd>
+          </dl>
+          <dl>
+            <dt>단체안내</dt>
+            <dd><a href="#">학습 · 일반단체</a></dd>
+            <dd><a href="#">단체프로그램</a></dd>
+            <dd><a href="#">기업단체</a></dd>
+            <dd><a href="#">단체예약</a></dd>
+          </dl>
+          <dl>
+            <dt>아쿠아플라넷</dt>
+            <dd><a href="#">아쿠아플라넷 제주</a></dd>
+            <dd><a href="#">아쿠아플라넷 여수</a></dd>
+            <dd><a href="#">아쿠아플라넷 일산</a></dd>
+            <dd><a href="#">아쿠아가든</a></dd>
+            <dd><a href="#">오시는 길</a></dd>
+          </dl>
+          <dl>
+            <dt>해양생물연구소</dt>
+            <dd><a href="#">연구센터소개</a></dd>
+            <dd><a href="#">구조치료실적</a></dd>
+            <dd><a href="#">보전활동</a></dd>
+            <dd><a href="#">연구분야</a></dd>
+          </dl>
+          <dl>
+            <dt>고객의 소리</dt>
+            <dd><a href="#">공지사항</a></dd>
+            <dd><a href="#">칭찬공간</a></dd>
+            <dd><a href="#">자주 묻는 질문</a></dd>
+            <dd><a href="#">고객의 소리함</a></dd>
+          </dl>
+        </div>
+
+        <div class="footer-bottom">
+          <address>
+            제주특별자치도 서귀포시 성산읍 섭지코지로 95&nbsp;&nbsp;|&nbsp;&nbsp;대표번호 1833-7001<br>
+            COPYRIGHT © AQUAPLANET. ALL RIGHTS RESERVED.
+          </address>
+          <img src="./images/foot_logo.png" alt="aqua planet JEJU">
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
