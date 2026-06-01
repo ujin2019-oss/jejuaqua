@@ -9,8 +9,8 @@
 }
 
 :root {
-  --page-width: 1440px;
-  --content-width: 1140px;
+  --page-width: 1920px;
+  --content-width: 1800px;
   --header-height: 64px;
   --blue-dark: #003574;
   --blue-footer: #07306b;
@@ -238,7 +238,7 @@ button {
 .hero {
   position: relative;
   display: flex;
-  height: 500px;
+  height: 970px;
   align-items: center;
   justify-content: center;
   overflow: hidden;
