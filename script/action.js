@@ -4,24 +4,6 @@ $(function () {
   var $menuBtn = $(".menu-btn");
   var $mobileMenu = $(".mobile-menu");
   var $quickItems = $(".quick-item");
-  var $logoImg = $(".logo img");
-  var logoDefaultSrc = "./images/foot_logo.png";
-  var logoHoverSrc = "./images/logo.png";
-  var logoTimer;
-
-  function swapLogo(src) {
-    clearTimeout(logoTimer);
-
-    if ($logoImg.attr("src") === src) {
-      return;
-    }
-
-    $logoImg.css("opacity", 0);
-    logoTimer = setTimeout(function () {
-      $logoImg.attr("src", src).css("opacity", 1);
-    }, 125);
-  }
-
   function scrollToTarget(target) {
     var $target = $(target);
 
@@ -42,14 +24,6 @@ $(function () {
     $mobileMenu.stop().slideToggle(220).toggleClass("is-open", isOpen);
   });
 
-  $header.on("mouseenter focusin", function () {
-    swapLogo(logoHoverSrc);
-  }).on("mouseleave focusout", function () {
-    if (!$header.hasClass("is-menu-open")) {
-      swapLogo(logoDefaultSrc);
-    }
-  });
-
   $(".gnb a, .mobile-menu a, .logo a").on("click", function (event) {
     var target = $(this).attr("href");
 
@@ -58,7 +32,6 @@ $(function () {
       scrollToTarget(target);
       $menuBtn.removeClass("is-open");
       $header.removeClass("is-menu-open");
-      swapLogo(logoDefaultSrc);
       $mobileMenu.stop().slideUp(180).removeClass("is-open");
     }
   });
