@@ -12,7 +12,7 @@
   <div id="wrap">
     <header class="site-header">
       <div class="header-inner">
-        <button type="button" class="menu-btn" aria-label="전체 메뉴 열기">
+        <button type="button" class="menu-btn" aria-label="전체 메뉴 열기" aria-expanded="false" aria-controls="mobile-menu">
           <span></span>
           <span></span>
           <span></span>
@@ -27,34 +27,41 @@
             <li><a href="#marine">해양생물소개</a></li>
             <li><a href="#market">아쿠아플라넷</a></li>
             <li><a href="#voice">고객의소리</a></li>
-            <li><a href="#ticket">티켓구매</a></li>
+            <li><a href="#ticket">이용요금</a></li>
           </ul>
         </nav>
       </div>
-      <div class="mobile-menu">
+      <nav class="mobile-menu" id="mobile-menu" aria-label="전체 메뉴" hidden>
         <a href="#info">이용안내</a>
         <a href="#program">프로그램</a>
         <a href="#marine">해양생물소개</a>
         <a href="#market">아쿠아플라넷</a>
         <a href="#voice">고객의소리</a>
-        <a href="#ticket">티켓구매</a>
-      </div>
+        <a href="#ticket">이용요금</a>
+      </nav>
     </header>
 
     <aside class="quick-menu" aria-label="빠른 메뉴">
-      <button type="button" class="quick-item active" data-target="#ticket">
-        <img src="./images/hero_icon1.png" alt="">
-        <span>티켓<br>구매</span>
+      <button type="button" class="quick-toggle" aria-label="빠른 메뉴 펼치기" aria-controls="quick-links" aria-expanded="true" aria-disabled="true" tabindex="-1">
+        <span class="quick-line" aria-hidden="true"></span>
+        <span class="quick-indicator-slot" data-target="#marine"><span class="quick-indicator" aria-hidden="true"></span></span>
+        <span class="quick-indicator-slot" data-target="#program"><span class="quick-indicator" aria-hidden="true"></span></span>
+        <span class="quick-indicator-slot" data-target="#info"><span class="quick-indicator" aria-hidden="true"></span></span>
       </button>
-      <button type="button" class="quick-item" data-target="#program">
-        <img src="./images/hero_icon2.png" alt="">
-        <span>프로<br>그램</span>
-      </button>
-      <button type="button" class="quick-item" data-target="#info">
-        <img src="./images/hero_icon3.png" alt="">
-        <span>이용<br>안내</span>
-      </button>
-      <div class="quick-line" aria-hidden="true"></div>
+      <div class="quick-buttons" id="quick-links">
+        <button type="button" class="quick-item" data-target="#marine">
+          <img src="./images/hero_icon1.png" alt="">
+          <span>바다<br>생물</span>
+        </button>
+        <button type="button" class="quick-item" data-target="#program">
+          <img src="./images/hero_icon2.png" alt="">
+          <span>프로<br>그램</span>
+        </button>
+        <button type="button" class="quick-item" data-target="#info">
+          <img src="./images/hero_icon3.png" alt="">
+          <span>이용<br>안내</span>
+        </button>
+      </div>
     </aside>
 
     <main>
@@ -70,6 +77,8 @@
       </section>
 
       <section class="marine section-panel" id="marine">
+        <img class="marine-decoration marine-shark" src="./images/shark.png" alt="" aria-hidden="true" width="660" height="475">
+        <img class="marine-decoration marine-bubbles" src="./images/bubble1.png" alt="" aria-hidden="true" width="129" height="273">
         <div class="section-title">
           <span>MARINE LIFE</span>
           <h2>바다친구들 소개</h2>
@@ -133,6 +142,10 @@
       </section>
 
       <section class="program section-panel" id="program">
+        <img class="program-decoration program-glow" src="./images/ellipse_blue.png" alt="" aria-hidden="true" width="846" height="174">
+        <img class="program-decoration program-seaweed" src="./images/seaweed.png" alt="" aria-hidden="true" width="597" height="423">
+        <img class="program-decoration program-bubbles-left" src="./images/bubble2.png" alt="" aria-hidden="true" width="458" height="270">
+        <img class="program-decoration program-bubbles-right" src="./images/bubble3.png" alt="" aria-hidden="true" width="302" height="229">
         <div class="section-title">
           <span>SPECIAL PROGRAM</span>
           <h2>특별 프로그램</h2>
