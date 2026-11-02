@@ -192,6 +192,33 @@ button {
   color: #1689ff;
 }
 
+.header-actions { display: none; }
+
+@media (min-width: 1201px) {
+  .header-inner {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    width: calc(100% - 64px);
+    gap: 24px;
+  }
+  .gnb ul { gap: clamp(16px, calc(7.5vw - 80px), 56px); }
+  .header-actions { display: flex; align-items: center; gap: 24px; }
+  .header-action {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    gap: 7px;
+    color: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    white-space: nowrap;
+    text-shadow: inherit;
+    transition: color .22s ease;
+  }
+  .header-action svg { width: 18px; height: 18px; flex-shrink: 0; }
+  .header-action:disabled { opacity: 1; cursor: default; }
+}
+
 .mobile-menu {
   display: none;
   padding: 10px 24px 22px;
@@ -674,22 +701,10 @@ button {
 }
 
 .program-body dt {
-  display: flex;
-  width: 22px;
-  height: 22px;
-  align-items: center;
-  justify-content: center;
+  min-width: 5em;
   flex-shrink: 0;
-  color: transparent;
-  font-size: 0;
-  border: 1px solid rgba(255, 255, 255, .78);
-  border-radius: 50%;
-}
-
-.program-body dt img {
-  width: 12px;
-  height: 12px;
-  object-fit: contain;
+  color: rgba(255, 255, 255, .75);
+  font-weight: 400;
 }
 
 .program-body dd {
