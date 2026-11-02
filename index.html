@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>아쿠아플라넷 제주</title>
   <link rel="stylesheet" href="./css/style.css">
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -63,6 +63,18 @@
         </button>
       </div>
     </aside>
+
+    <nav class="mobile-cta" aria-label="전화 및 티켓구매">
+      <a class="mobile-cta-button mobile-cta-phone" href="tel:18337001" aria-label="대표번호 1833-7001로 전화">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m7 3 3 5-2.5 2a15 15 0 0 0 6.5 6.5l2-2.5 5 3-1 4C10 22 2 14 3 4Z"/></svg>
+        <span>전화</span>
+      </a>
+      <!-- 실제 예매 URL 확인 후 이 버튼을 href가 있는 a 요소로 교체합니다. -->
+      <button class="mobile-cta-button mobile-cta-ticket" type="button" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16v5a2 2 0 0 0 0 4v5H4v-5a2 2 0 0 0 0-4Z"/><path d="M15 5v2m0 4v2m0 4v2"/></svg>
+        <span>티켓구매</span>
+      </button>
+    </nav>
 
     <main>
       <section class="hero" id="hero">

@@ -223,6 +223,8 @@ button {
   transform: translateY(-50%);
 }
 
+.mobile-cta { display: none; }
+
 .quick-buttons {
   display: flex;
   flex-direction: column;
@@ -1091,6 +1093,140 @@ section, #ticket { scroll-margin-top: 24px; }
 }
 
 @media (max-width: 767px) {
+  :root {
+    --section-nav-height: 46px;
+    --mobile-top-offset: var(--section-nav-height);
+    --mobile-cta-height: calc(54px + env(safe-area-inset-bottom, 0px));
+  }
+  /* jQuery owns animated scrolling; native anchor/focus offsets use the same heights. */
+  html { scroll-behavior: auto; }
+  body { padding-bottom: var(--mobile-cta-height); }
+  /* Clip decoration without creating a scroll container that traps sticky. */
+  #wrap { overflow: clip; }
+  section, #ticket, #market, #voice {
+    scroll-margin-top: calc(var(--mobile-top-offset) + 16px);
+  }
+  :focus-visible { scroll-margin-block: calc(var(--mobile-top-offset) + 16px) calc(var(--mobile-cta-height) + 16px); }
+  .site-header {
+    position: relative;
+    z-index: 30;
+    background: rgba(3, 32, 64, .94);
+  }
+  .mobile-menu { position: absolute; inset: 100% 0 auto; }
+  .quick-menu,
+  .quick-menu.is-compact,
+  .quick-menu:not(.is-compact) {
+    position: sticky;
+    inset: 0 auto auto;
+    z-index: 25;
+    width: 100%;
+    height: var(--section-nav-height);
+    padding: 0;
+    transform: none;
+    border-bottom: 1px solid rgba(255, 255, 255, .22);
+    background: var(--section-glass-background, linear-gradient(135deg, #163f64, #092b50));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .20);
+  }
+  /* Reflections stay below the controls and never intercept touches. */
+  .quick-menu::before,
+  .mobile-cta-button::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 0;
+    height: 18px;
+    border-radius: inherit;
+    background: linear-gradient(180deg, rgba(255, 255, 255, .12), rgba(255, 255, 255, 0));
+    pointer-events: none;
+  }
+  .quick-toggle { display: none !important; }
+  .quick-menu .quick-buttons {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    height: 100%;
+    gap: 0;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  .quick-item {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    color: #f0f7ff;
+    background: transparent;
+    font-size: 13px;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .quick-item img, .quick-item br { display: none; }
+  .quick-item.active { color: #fff; box-shadow: none; }
+  .quick-item::after {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    left: calc(50% - 10px);
+    width: 20px;
+    height: 2px;
+    border-radius: 2px;
+    background: #8be8ff;
+    opacity: 0;
+  }
+  .quick-item.active::after { opacity: 1; }
+  .quick-item:focus-visible { outline-offset: -4px; }
+  .mobile-cta {
+    position: fixed;
+    inset: auto 0 0;
+    z-index: 25;
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    gap: 0;
+    padding: 0;
+  }
+  .mobile-cta-button {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    min-width: 0;
+    height: var(--mobile-cta-height);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 0;
+    border-radius: 0;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+  .mobile-cta-button::before { height: 12px; background: linear-gradient(180deg, rgba(255, 255, 255, .10), transparent); }
+  .mobile-cta-button:focus-visible { outline-offset: -4px; }
+  .mobile-cta-button > svg, .mobile-cta-button > span { position: relative; z-index: 1; }
+  .mobile-cta-button svg { width: 21px; height: 21px; flex-shrink: 0; }
+  .mobile-cta-phone { color: #12385d; background: #e1edf6; padding-left: env(safe-area-inset-left, 0px); }
+  .mobile-cta-ticket {
+    color: #fff;
+    background: #073d78;
+    padding-right: env(safe-area-inset-right, 0px);
+  }
+  .mobile-cta-ticket:disabled { opacity: 1; cursor: not-allowed; }
+  @supports ((backdrop-filter: blur(16px)) or (-webkit-backdrop-filter: blur(16px))) {
+    .quick-menu {
+      /* Shared background avoids compact-state selectors overriding the glass. */
+      --section-glass-background: linear-gradient(135deg, rgba(24, 69, 110, .76), rgba(8, 35, 70, .66));
+      -webkit-backdrop-filter: blur(16px) saturate(160%);
+      backdrop-filter: blur(16px) saturate(160%);
+    }
+    .mobile-cta-button {
+      -webkit-backdrop-filter: blur(12px) saturate(140%);
+      backdrop-filter: blur(12px) saturate(140%);
+    }
+    .mobile-cta-phone { background: rgba(225, 237, 246, .88); }
+    .mobile-cta-ticket { background: rgba(7, 61, 120, .92); }
+  }
   .program-seaweed,
   .program-bubbles-left,
   .program-bubbles-right { display: none; }

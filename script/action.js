@@ -16,9 +16,17 @@ $(function () {
   var suppressQuickFocus = false;
   var quickPointerInput = false;
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var mobileNavigation = window.matchMedia("(max-width: 767px)");
+  var pendingQuickTarget = null;
+  var scrollVersion = 0;
+  var quickFrame = null;
+
+  function topOffset() {
+    return mobileNavigation.matches ? $quickMenu.outerHeight() + 16 : 0;
+  }
 
   function renderQuick() {
-    var open = !quickCompact || quickExpanded || quickHovered || quickFocus;
+    var open = mobileNavigation.matches || !quickCompact || quickExpanded || quickHovered || quickFocus;
     $quickMenu.toggleClass("is-compact", quickCompact).toggleClass("is-expanded", open);
     $quickButtons.prop("inert", !open).attr("aria-hidden", String(!open));
     $quickItems.attr("tabindex", open ? "0" : "-1");
@@ -112,12 +120,25 @@ $(function () {
       return;
     }
 
-    // The absolute header scrolls away, so every target aligns with the viewport top.
-    var destinationTop = $target.offset().top;
+    // Cancel the previous animation before assigning its replacement's active state.
+    var version = ++scrollVersion;
+    $("html, body").stop(true);
+    pendingQuickTarget = mobileNavigation.matches ? $quickItems.filter(function () {
+      return $(this).data("target") === target;
+    })[0] || null : null;
+    if (pendingQuickTarget) setQuickCurrent(pendingQuickTarget);
+    var destinationTop = mobileNavigation.matches && target === "#hero" ? 0 : Math.max(0, Math.min(
+      $target.offset().top - topOffset(),
+      document.documentElement.scrollHeight - window.innerHeight
+    ));
 
-    $("html, body").stop().animate({
+    $("html, body").animate({
       scrollTop: destinationTop
-    }, reducedMotion.matches ? 0 : 520);
+    }, reducedMotion.matches ? 0 : 520).promise().done(function () {
+      if (version !== scrollVersion) return;
+      pendingQuickTarget = null;
+      updateQuickState();
+    });
   }
 
   $menuBtn.on("click", function () {
@@ -201,14 +222,18 @@ $(function () {
   });
 
   function updateQuickState() {
-    var compact = hero.getBoundingClientRect().bottom <= 0;
+    // A scrolled-away header must not leave the sticky section bar hidden.
+    if (mobileNavigation.matches && $menuBtn.attr("aria-expanded") === "true" && $header[0].getBoundingClientRect().bottom <= 0) {
+      setMenu(false);
+    }
+    var compact = !mobileNavigation.matches && hero.getBoundingClientRect().bottom <= 0;
     if (compact !== quickCompact) {
       quickCompact = compact;
       quickExpanded = false;
       quickHovered = false;
       quickFocus = $quickMenu[0].contains(document.activeElement);
     }
-    var probe = $window.scrollTop() + Math.min(220, $window.height() * .3);
+    var probe = $window.scrollTop() + (mobileNavigation.matches ? topOffset() + 1 : Math.min(220, $window.height() * .3));
     var current = null;
     var currentTop = -Infinity;
 
@@ -221,10 +246,29 @@ $(function () {
         currentTop = top;
       }
     });
-    setQuickCurrent(current);
+    setQuickCurrent(pendingQuickTarget || current);
     renderQuick();
   }
 
-  $window.on("scroll resize", updateQuickState);
+  function interruptScroll() {
+    ++scrollVersion;
+    pendingQuickTarget = null;
+    $("html, body").stop(true);
+    updateQuickState();
+  }
+  // A deliberate manual scroll releases the selected-tab lock immediately.
+  window.addEventListener("wheel", interruptScroll, { passive: true });
+  window.addEventListener("touchstart", interruptScroll, { passive: true });
+  $(document).on("keydown", function (event) {
+    if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].indexOf(event.key) !== -1 && !$(event.target).is("button, a, input, textarea, select")) interruptScroll();
+  });
+  mobileNavigation.addEventListener("change", interruptScroll);
+  $window.on("scroll resize", function () {
+    if (quickFrame !== null) return;
+    quickFrame = window.requestAnimationFrame(function () {
+      quickFrame = null;
+      updateQuickState();
+    });
+  });
   updateQuickState();
 });
