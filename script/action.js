@@ -20,6 +20,7 @@ $(function () {
   var pendingQuickTarget = null;
   var scrollVersion = 0;
   var quickFrame = null;
+  var mobileNavSolid = false;
 
   function topOffset() {
     return mobileNavigation.matches ? $quickMenu.outerHeight() + 16 : 0;
@@ -222,11 +223,21 @@ $(function () {
   });
 
   function updateQuickState() {
+    var heroBottom = hero.getBoundingClientRect().bottom;
+    // Switch when the hero clears the section bar; an 8px return band avoids flicker.
+    if (mobileNavigation.matches) {
+      var navHeight = $quickMenu.outerHeight();
+      if (heroBottom <= navHeight) mobileNavSolid = true;
+      else if (heroBottom > navHeight + 8) mobileNavSolid = false;
+    } else {
+      mobileNavSolid = false;
+    }
+    $quickMenu.toggleClass("is-past-hero", mobileNavSolid);
     // A scrolled-away header must not leave the sticky section bar hidden.
     if (mobileNavigation.matches && $menuBtn.attr("aria-expanded") === "true" && $header[0].getBoundingClientRect().bottom <= 0) {
       setMenu(false);
     }
-    var compact = !mobileNavigation.matches && hero.getBoundingClientRect().bottom <= 0;
+    var compact = !mobileNavigation.matches && heroBottom <= 0;
     if (compact !== quickCompact) {
       quickCompact = compact;
       quickExpanded = false;
